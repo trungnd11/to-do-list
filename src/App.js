@@ -46,6 +46,15 @@ function App() {
     );
   }, []);
 
+  const onDeleteBtnClick = useCallback((id) => { 
+    let todoLists = JSON.parse(localStorage.getItem(TODO_APP_STORAGE_KEY));
+    let index = todoLists.findIndex((todo) =>todo.id === id);
+    console.log(index);
+    setTodoList(todoLists = todoLists.filter(function(todo){
+      return todo.id !== id
+  }));
+  }, [])
+
   return (
     <div className="todoContent">
       <h3>Danh sách cần làm</h3>
@@ -65,7 +74,7 @@ function App() {
         value={textInput}
         onChange={onTextInputChange}
       ></Textfield>
-      <TodoList todoList={todoList} onCheckBtnClick={onCheckBtnClick} />
+      <TodoList todoList={todoList} onCheckBtnClick={onCheckBtnClick} onDeleteBtnClick={onDeleteBtnClick} />
     </div>
   );
 }

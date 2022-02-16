@@ -2,6 +2,7 @@ import Button from "@atlaskit/button";
 import React from "react";
 import styled, { css } from "styled-components";
 import CheckIcon from "@atlaskit/icon/glyph/check";
+import EditorRemoveIcon from '@atlaskit/icon/glyph/editor/remove';
 
 const ButtonStyled = styled(Button)`
   margin-top: 20px;
@@ -17,12 +18,12 @@ const ButtonStyled = styled(Button)`
   }
 
   &:hover {
-    .check-icon {
+    .show-icon {
       display: inline-block;
     }
   }
 
-  .check-icon {
+  .show-icon {
     display: none;
 
     &:hover {
@@ -32,15 +33,23 @@ const ButtonStyled = styled(Button)`
   }
 `;
 
-export default function Todo({ todo, onCheckBtnClick }) {
+export default function Todo({ todo, onCheckBtnClick, onDeleteBtnClick}) {
   return (
     <ButtonStyled
       isCompleted={todo.isCompleted}
       shouldFitContainer
-      iconAfter={
+      iconBefore={
         !todo.isCompleted && (
-          <span className='check-icon' onClick={() => onCheckBtnClick(todo.id)}>
+          <span className='show-icon' onClick={() => onCheckBtnClick(todo.id)}>
             <CheckIcon primaryColor='#4fff4f' />
+          </span>
+        )
+      }
+
+      iconAfter={
+        (
+          <span className='show-icon' onClick={() => onDeleteBtnClick(todo.id)}>
+            <EditorRemoveIcon primaryColor='#FF0000' />
           </span>
         )
       }
