@@ -30,7 +30,7 @@ function App() {
       // them text input vao danh sach todoList
       setTodoList([
         { id: v4(), name: textInput, isCompleted: false },
-        ...todoList,
+        ...todoList
       ]);
 
       setTextInput("");
@@ -46,13 +46,13 @@ function App() {
     );
   }, []);
 
-  const onDeleteBtnClick = useCallback((id) => { 
+  const onDeleteBtnClick = useCallback((id) => {
     let todoLists = JSON.parse(localStorage.getItem(TODO_APP_STORAGE_KEY));
-    let index = todoLists.findIndex((todo) =>todo.id === id);
+    let index = todoLists.findIndex((todo) => todo.id === id);
     console.log(index);
-    setTodoList(todoLists = todoLists.filter(function(todo){
-      return todo.id !== id
-  }));
+    setTodoList(todoLists = todoLists.filter(function (todo) {
+      return todo.id !== id;
+    }));
   }, [])
 
   return (

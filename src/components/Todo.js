@@ -11,7 +11,7 @@ const ButtonStyled = styled(Button)`
   &,
   &:hover {
     ${(p) =>
-      p.isCompleted &&
+      p.iscompleted === 'true' &&
       css`
         text-decoration: line-through;
       `}
@@ -36,7 +36,7 @@ const ButtonStyled = styled(Button)`
 export default function Todo({ todo, onCheckBtnClick, onDeleteBtnClick}) {
   return (
     <ButtonStyled
-      isCompleted={todo.isCompleted}
+      iscompleted={todo.isCompleted.toString()}
       shouldFitContainer
       iconBefore={
         !todo.isCompleted && (
@@ -45,7 +45,6 @@ export default function Todo({ todo, onCheckBtnClick, onDeleteBtnClick}) {
           </span>
         )
       }
-
       iconAfter={
         (
           <span className='show-icon' onClick={() => onDeleteBtnClick(todo.id)}>
